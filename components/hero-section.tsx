@@ -15,7 +15,7 @@ export function HeroSection() {
       {/* Background image - CLEAR, full quality */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/vortex-ai/img1.png"
+          src="/img1.png"
           alt="Mystical forest"
           fill
           className="object-cover object-center"
@@ -69,7 +69,7 @@ export function HeroSection() {
           }`}
         >
           <Image
-            src="/vortex-ai/font.png"
+            src="/font.png"
             alt="Vortex AI"
             width={600}
             height={240}

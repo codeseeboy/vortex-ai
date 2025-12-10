@@ -81,7 +81,7 @@ export function CountdownSection() {
       {/* Background image - image.jpg */}
       <div className="absolute inset-0 z-0">
         <Image 
-          src="/vortex-ai/image.jpg" 
+          src="/image.jpg" 
           alt="Upside Down" 
           fill 
           className="object-cover md:object-contain object-center" 
