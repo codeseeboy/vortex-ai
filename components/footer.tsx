@@ -35,7 +35,7 @@ export function Footer() {
         >
           {/* Logo */}
           <Image
-            src="/vortex-ai/font.png"
+            src="/font.png"
             alt="Vortex AI"
             width={160}
             height={64}
