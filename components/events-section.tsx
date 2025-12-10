@@ -236,7 +236,7 @@ export function EventsSection() {
       {/* Background image - seamless, no borders visible */}
       <div className="absolute inset-0 -top-40 -bottom-40 -left-10 -right-10">
         <Image 
-          src="/005.webp?v=2" 
+          src="/vortex-ai/005.webp?v=2" 
           alt="Background" 
           fill 
           className="object-cover object-center"
