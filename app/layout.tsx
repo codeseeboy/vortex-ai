@@ -12,6 +12,9 @@ const jetbrains = JetBrains_Mono({ subsets: ["latin"], variable: "--font-jetbrai
 export const metadata: Metadata = {
   title: "VORTEX AI 2.0 | ASCAI",
   description: "Enter the Upside Down - Vortex AI Event by ASCAI | December 18-19, 2025",
+  icons: {
+    icon: '/ascai-logo.png',
+  },
 }
 
 export const viewport: Viewport = {
