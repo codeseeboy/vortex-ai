@@ -7,7 +7,7 @@ export function VideoSection() {
     <section id="portal" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
       {/* Image background */}
       <div className="absolute inset-0 w-full h-full">
-        <Image src="/img001.jpg" alt="Portal" fill className="object-cover" priority quality={75} />
+        <Image src="/vortex-ai/img001.jpg" alt="Portal" fill className="object-cover" priority quality={75} />
       </div>
 
       {/* Top and bottom black overlays */}

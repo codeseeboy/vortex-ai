@@ -28,7 +28,7 @@ export function Navbar() {
             {/* Logo */}
             <Link href="/" className="flex items-center gap-2 sm:gap-3">
               <div className="relative w-8 h-8 sm:w-9 sm:h-9">
-                <Image src="/ascai-logo.png" alt="ASCAI" fill className="object-contain" priority />
+                <Image src="/vortex-ai/ascai-logo.png" alt="ASCAI" fill className="object-contain" priority />
               </div>
               <span className="text-white font-serif text-sm sm:text-base tracking-[0.2em]">
                 VORTEX <span className="text-white">AI</span> <span className="text-white">2.0</span>
@@ -73,7 +73,7 @@ export function Navbar() {
       >
         {/* Background Image */}
         <div className="absolute inset-0 opacity-20">
-          <Image src="/img1.png" alt="" fill className="object-cover" />
+          <Image src="/vortex-ai/img1.png" alt="" fill className="object-cover" />
         </div>
         <div className="absolute inset-0 bg-gradient-to-b from-black via-black/90 to-black" />
 
