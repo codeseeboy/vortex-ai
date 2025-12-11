@@ -18,7 +18,7 @@ const events = [
     entryFee: "₹50",
   },
   {
-    id: "bgmi-finals",
+    id: "bgmi",
     name: "BGMI",
     date: "Dec 18",
     time: "1:30 PM - 4:30 PM",

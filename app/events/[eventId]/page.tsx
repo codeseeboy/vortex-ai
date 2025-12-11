@@ -13,7 +13,7 @@ const eventComponents: Record<string, React.ComponentType> = {
   "bgmi-qualifiers": BGMIQualifiersPage,
   pitchgate: PitchGatePage,
   cr: CRPage,
-  "bgmi-finals": BGMIFinalsPage,
+  bgmi: BGMIFinalsPage,
 }
 
 export default async function EventPage({
@@ -38,6 +38,6 @@ export async function generateStaticParams() {
     { eventId: "bgmi-qualifiers" },
     { eventId: "pitchgate" },
     { eventId: "cr" },
-    { eventId: "bgmi-finals" },
+    { eventId: "bgmi" },
   ]
 }
