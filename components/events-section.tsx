@@ -12,21 +12,32 @@ const events = [
     date: "Dec 18",
     time: "11:00 AM - 1:00 PM",
     description: "Summon your digital world",
-    image: "/img3.jpg",
+    image: "/vecna-coding-lab.png",
     color: "red",
-    entryFee: "₹50",
     teamSize: "1 member",
+    entryFee: "₹50",
+  },
+  {
+    id: "bgmi-finals",
+    name: "BGMI",
+    date: "Dec 18",
+    time: "1:30 PM - 4:30 PM",
+    description: "Championship showdown finals",
+    image: "/bgmi2.jpg",
+    color: "red",
+    teamSize: "Max 4 members",
+    entryFee: "₹200",
   },
   {
     id: "e-football",
     name: "E-Football",
     date: "Dec 18",
-    time: "11:00 AM - 1:00 PM",
+    time: "2:00 PM - 4:00 PM",
     description: "Virtual football tournament championship",
-    image: "/img9.jpg",
+    image: "/efootball-laptop.png",
     color: "blue",
-    entryFee: "₹60",
     teamSize: "1 member",
+    entryFee: "₹60",
   },
   {
     id: "pitchgate",
@@ -36,8 +47,8 @@ const events = [
     description: "Pitch to the upside down",
     image: "/img7.webp",
     color: "orange",
-    entryFee: "₹150",
     teamSize: "Max 4 members",
+    entryFee: "₹150",
   },
   {
     id: "cr",
@@ -47,19 +58,8 @@ const events = [
     description: "Strategic tower battle tournament",
     image: "/img8.jpg",
     color: "purple",
-    entryFee: "₹60",
     teamSize: "1 member",
-  },
-  {
-    id: "bgmi-finals",
-    name: "BGMI",
-    date: "Dec 19",
-    time: "1:30 PM - 4:30 PM",
-    description: "Championship showdown finals",
-    image: "/img2.jpg",
-    color: "red",
-    entryFee: "₹200",
-    teamSize: "Max 4 members",
+    entryFee: "₹60",
   },
 ]
 
@@ -153,8 +153,8 @@ function EventCard({ event, index }: { event: (typeof events)[0]; index: number 
         <div className="p-4 sm:p-5">
           <div className="flex items-center gap-2 mb-2">
             <span className="text-red-500 text-[10px] sm:text-xs font-mono">{event.date}</span>
-            <span className="text-gray-700">•</span>
-            <span className="text-gray-500 text-[10px] sm:text-xs">{event.time}</span>
+            {/* <span className="text-gray-700">•</span>
+            <span className="text-gray-500 text-[10px] sm:text-xs">{event.time}</span> */}
           </div>
           <h3
             className={`text-base sm:text-lg lg:text-xl font-serif font-semibold transition-colors duration-300 ${
@@ -171,7 +171,7 @@ function EventCard({ event, index }: { event: (typeof events)[0]; index: number 
               <svg className="w-3.5 h-3.5 text-red-500" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 1c6.075 0 11 4.925 11 11s-4.925 11-11 11S1 18.075 1 12 5.925 1 12 1m0 2c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9zm3.5 7c.828 0 1.5.672 1.5 1.5S16.328 13 15.5 13 14 12.328 14 11.5s.672-1.5 1.5-1.5zm-7 0c.828 0 1.5.672 1.5 1.5S9.328 13 8.5 13 7 12.328 7 11.5 7.672 10 8.5 10zm3.5 5.5c2.33 0 4.31 1.46 5.02 3.5H6.48c.71-2.04 2.69-3.5 5.02-3.5z" />
               </svg>
-              <span className="text-red-400 font-medium">{event.entryFee || "N/A"}</span>
+              <span className="text-red-400 font-medium">{event.entryFee || "Free Entry"}</span>
             </div>
             <div className="flex items-center gap-1.5 px-2.5 py-1.5 bg-blue-600/10 border border-blue-600/20 rounded">
               <svg className="w-3.5 h-3.5 text-blue-400" fill="currentColor" viewBox="0 0 24 24">
