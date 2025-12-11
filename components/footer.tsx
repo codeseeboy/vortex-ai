@@ -47,26 +47,12 @@ export function Footer() {
           </p>
 
           {/* Social links */}
-          <div className="mt-6 sm:mt-8 flex items-center justify-center gap-4 sm:gap-6">
+          <div className="mt-6 sm:mt-8 flex items-center justify-center">
             <a
               href="https://instagram.com/ascai_sjcem"
               className="text-gray-600 hover:text-red-500 transition-colors text-[11px] sm:text-xs tracking-wider mobile-tap"
             >
               @ASCAI_SJCEM
-            </a>
-            <span className="text-gray-800 text-xs">•</span>
-            <a
-              href="#"
-              className="text-gray-600 hover:text-red-500 transition-colors text-[11px] sm:text-xs tracking-wider mobile-tap"
-            >
-              Twitter
-            </a>
-            <span className="text-gray-800 text-xs">•</span>
-            <a
-              href="#"
-              className="text-gray-600 hover:text-red-500 transition-colors text-[11px] sm:text-xs tracking-wider mobile-tap"
-            >
-              Discord
             </a>
           </div>
 

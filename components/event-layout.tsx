@@ -12,44 +12,62 @@ interface EventLayoutProps {
   time: string
   location: string
   accentColor: string
+  imagePosition?: "center" | "bottom"
+  entryFee?: string
 }
 
-export function EventLayout({ children, backgroundImage, title, date, time, location, accentColor }: EventLayoutProps) {
+export function EventLayout({ children, backgroundImage, title, date, time, location, accentColor, imagePosition = "center", entryFee }: EventLayoutProps) {
   const [mounted, setMounted] = useState(false)
-  const [scrollY, setScrollY] = useState(0)
+  const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
     setMounted(true)
-    const handleScroll = () => setScrollY(window.scrollY)
-    window.addEventListener("scroll", handleScroll, { passive: true })
-    return () => window.removeEventListener("scroll", handleScroll)
+    setIsMobile(window.innerWidth < 768)
   }, [])
 
-  const parallaxY = scrollY * 0.4
+  const scrollToRegister = () => {
+    const registerButton = document.querySelector('a[href*="forms.gle"]') || document.querySelector('button:contains("REGISTER")')
+    if (registerButton) {
+      registerButton.scrollIntoView({ behavior: "smooth", block: "center" })
+    }
+  }
+
+  const imageSource = isMobile && backgroundImage.includes("vecna-coding-lab") 
+    ? "/mobile-view-vecna-code-lab.png" 
+    : isMobile && backgroundImage.includes("efootball-laptop")
+    ? "/efootball-mobile.png"
+    : backgroundImage
 
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen bg-black overflow-x-hidden">
       {/* Hero section */}
       <section className="relative h-[85vh] md:h-screen overflow-hidden">
-        {/* Background image with parallax */}
-        <div className="absolute inset-0" style={{ transform: `translateY(${parallaxY}px)` }}>
+        {/* Background image - smooth, no parallax */}
+        <div className="absolute inset-0 will-change-auto">
           <Image
-            src={backgroundImage || "/placeholder.svg"}
+            src={imageSource || "/placeholder.svg"}
             alt={title}
             fill
-            className="object-cover"
+            className={`${
+              isMobile && backgroundImage.includes("efootball-laptop")
+                ? "object-contain"
+                : backgroundImage.includes("bgmi2")
+                ? "object-cover object-center"
+                : `object-cover ${imagePosition === "bottom" ? "object-bottom" : "object-center"}`
+            }`}
             priority
-            quality={90}
+            quality={100}
+            unoptimized
           />
         </div>
 
         {/* Gradient overlays */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/40" />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-black/10" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-transparent" />
         <div
           className="absolute inset-0"
           style={{
-            background: `linear-gradient(to top, ${accentColor}30 0%, transparent 40%)`,
+            background: `linear-gradient(to top, ${accentColor}10 0%, transparent 60%)`,
           }}
         />
 
@@ -72,13 +90,13 @@ export function EventLayout({ children, backgroundImage, title, date, time, loca
           <span className="text-sm tracking-wider hidden md:inline">BACK</span>
         </Link>
 
-        {/* Title content */}
-        <div className="absolute inset-0 flex items-end pb-16 md:pb-24">
+        {/* Title content - slightly higher */}
+        <div className="absolute inset-0 flex items-end pb-28 md:pb-28">
           <div className="w-full px-4 md:px-8 lg:px-16">
             <div className="max-w-4xl">
               {/* Event badge */}
               <div
-                className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full border mb-6 transition-all duration-700 ${
+                className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full border mb-4 md:mb-6 transition-all duration-700 ${
                   mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
                 }`}
                 style={{ borderColor: `${accentColor}60`, backgroundColor: `${accentColor}20` }}
@@ -89,7 +107,7 @@ export function EventLayout({ children, backgroundImage, title, date, time, loca
 
               {/* Title */}
               <h1
-                className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-bold text-white mb-6 transition-all duration-1000 delay-100 ${
+                className={`text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-serif font-bold text-white mb-3 md:mb-6 transition-all duration-1000 delay-100 ${
                   mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
                 }`}
               >
@@ -98,13 +116,13 @@ export function EventLayout({ children, backgroundImage, title, date, time, loca
 
               {/* Meta info */}
               <div
-                className={`flex flex-wrap items-center gap-4 md:gap-6 text-sm md:text-base transition-all duration-1000 delay-300 ${
+                className={`flex flex-wrap items-center gap-2 md:gap-6 text-xs md:text-base transition-all duration-1000 delay-300 ${
                   mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
                 }`}
               >
-                <span className="flex items-center gap-2 text-gray-300">
+                <span className="flex items-center gap-1.5 md:gap-2 text-gray-300">
                   <svg
-                    className="w-4 h-4 md:w-5 md:h-5"
+                    className="w-3 h-3 md:w-5 md:h-5"
                     style={{ color: accentColor }}
                     fill="none"
                     viewBox="0 0 24 24"
@@ -119,9 +137,28 @@ export function EventLayout({ children, backgroundImage, title, date, time, loca
                   </svg>
                   {date}
                 </span>
-                <span className="flex items-center gap-2 text-gray-300">
+                {entryFee && (
+                  <span className="flex items-center gap-1.5 md:gap-2 text-gray-300">
+                    <svg
+                      className="w-3 h-3 md:w-5 md:h-5"
+                      style={{ color: accentColor }}
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                      />
+                    </svg>
+                    {entryFee}
+                  </span>
+                )}
+                {/* <span className="flex items-center gap-1.5 md:gap-2 text-gray-300">
                   <svg
-                    className="w-4 h-4 md:w-5 md:h-5"
+                    className="w-3 h-3 md:w-5 md:h-5"
                     style={{ color: accentColor }}
                     fill="none"
                     viewBox="0 0 24 24"
@@ -135,10 +172,10 @@ export function EventLayout({ children, backgroundImage, title, date, time, loca
                     />
                   </svg>
                   {time}
-                </span>
-                <span className="flex items-center gap-2 text-gray-300">
+                </span> */}
+                {/* <span className="flex items-center gap-1.5 md:gap-2 text-gray-300">
                   <svg
-                    className="w-4 h-4 md:w-5 md:h-5"
+                    className="w-3 h-3 md:w-5 md:h-5"
                     style={{ color: accentColor }}
                     fill="none"
                     viewBox="0 0 24 24"
@@ -158,25 +195,37 @@ export function EventLayout({ children, backgroundImage, title, date, time, loca
                     />
                   </svg>
                   {location}
-                </span>
+                </span> */}
               </div>
+
+              {/* Register Button */}
+              <button
+                onClick={scrollToRegister}
+                className={`mt-6 md:mt-8 inline-flex items-center gap-2 px-8 py-3 rounded-lg font-bold tracking-wider transition-all duration-500 hover:shadow-lg ${
+                  mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+                }`}
+                style={{
+                  backgroundColor: accentColor,
+                  color: "white",
+                  boxShadow: `0 0 20px ${accentColor}40`,
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.boxShadow = `0 0 30px ${accentColor}80`
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.boxShadow = `0 0 20px ${accentColor}40`
+                }}
+              >
+                REGISTER NOW
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+              </button>
             </div>
           </div>
         </div>
 
-        {/* Scroll indicator */}
-        <div
-          className={`absolute bottom-6 left-1/2 -translate-x-1/2 transition-all duration-1000 delay-500 ${
-            mounted ? "opacity-100" : "opacity-0"
-          }`}
-        >
-          <div className="flex flex-col items-center gap-2">
-            <span className="text-xs text-gray-500 tracking-widest">SCROLL</span>
-            <svg className="w-5 h-5 text-gray-500 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-            </svg>
-          </div>
-        </div>
+
       </section>
 
       {/* Content */}
