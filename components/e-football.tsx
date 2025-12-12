@@ -346,8 +346,8 @@ export function EFootballPage() {
             <h3 className="text-xl font-serif text-white mb-6">Awards</h3>
             <div className="grid md:grid-cols-3 gap-6">
               {[
-                { place: "🥇 1st Place", prize: "Winner Certificate" },
-                { place: "🥈 2nd Place", prize: "Runner-up Certificate" },
+                { place: "🥇 1st Place", prize: "Prize Money" },
+                { place: "🥈 2nd Place", prize: "Prize Money" },
                 { place: "🏅 Best Play", prize: "Special Recognition" },
               ].map((p, i) => (
                 <div
