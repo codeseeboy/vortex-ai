@@ -38,23 +38,23 @@ export function EventLayout({ children, backgroundImage, title, date, time, loca
     ? "/efootball-mobile.png"
     : backgroundImage
 
+  const imageClass = isMobile && backgroundImage.includes("efootball-laptop")
+    ? "object-cover object-center"
+    : backgroundImage.includes("bgmi2")
+    ? "object-cover object-center"
+    : `object-cover ${imagePosition === "bottom" ? "object-bottom" : "object-center"}`
+
   return (
     <div className="min-h-screen bg-black overflow-x-hidden">
       {/* Hero section */}
-      <section className="relative h-[85vh] md:h-screen overflow-hidden">
+      <section className="relative min-h-screen md:h-screen overflow-hidden">
         {/* Background image - smooth, no parallax */}
         <div className="absolute inset-0 will-change-auto">
           <Image
             src={imageSource || "/placeholder.svg"}
             alt={title}
             fill
-            className={`${
-              isMobile && backgroundImage.includes("efootball-laptop")
-                ? "object-contain"
-                : backgroundImage.includes("bgmi2")
-                ? "object-cover object-center"
-                : `object-cover ${imagePosition === "bottom" ? "object-bottom" : "object-center"}`
-            }`}
+            className={imageClass}
             priority
             quality={100}
             unoptimized
@@ -90,8 +90,8 @@ export function EventLayout({ children, backgroundImage, title, date, time, loca
           <span className="text-sm tracking-wider hidden md:inline">BACK</span>
         </Link>
 
-        {/* Title content - slightly higher */}
-        <div className="absolute inset-0 flex items-end pb-28 md:pb-28">
+        {/* Title content - slightly higher on mobile */}
+        <div className="absolute inset-0 flex items-end pb-32 md:pb-28">
           <div className="w-full px-4 md:px-8 lg:px-16">
             <div className="max-w-4xl">
               {/* Event badge */}

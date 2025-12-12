@@ -77,17 +77,16 @@ export function CountdownSection() {
   )
 
   return (
-    <section id="countdown" ref={sectionRef} className="relative w-full overflow-hidden py-6 sm:py-10 lg:py-16">
-      {/* Background image - image.jpg */}
+    <section id="countdown" ref={sectionRef} className="relative w-full overflow-hidden py-6 sm:py-10 lg:py-16 bg-black">
+      {/* Background image */}
       <div className="absolute inset-0 z-0">
-        <Image 
-          src="/image.jpg" 
-          alt="Upside Down" 
-          fill 
-          className="object-cover md:object-contain object-center" 
+        <Image
+          src="/image.png"
+          alt="Upside Down"
+          fill
+          className="object-cover object-center scale-[1.05]"
           quality={100}
           priority
-          unoptimized
         />
         {/* Gradient fade only at very top and bottom edges for seamless blend */}
         <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-black to-transparent" />
