@@ -37,7 +37,7 @@ export function CRPage() {
     <EventLayout
       backgroundImage="/img8.jpg"
       title="CLASH ROYALE"
-      date="December 19"
+      date="December 18"
       time=""
       location=""
       accentColor="#9333ea"

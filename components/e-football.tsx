@@ -81,7 +81,7 @@ export function EFootballPage() {
       backgroundImage="/efootball-laptop.png"
       imagePosition="bottom"
       title="E FOOTBALL"
-      date="December 18"
+      date="December 19"
       time="2:00 PM - 5:00 PM"
       location="Gaming Arena"
       accentColor="#3b82f6"
